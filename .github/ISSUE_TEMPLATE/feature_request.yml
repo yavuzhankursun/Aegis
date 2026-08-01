@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest a new metric, tab, or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What can't you see or do today?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Data source (if known)
+      description: >
+        Aegis only reads public, root-free APIs (IOKit, sysctl, Mach, top).
+        If you know where the data lives, mention it — features requiring
+        elevated privileges, kexts, or network access are out of scope.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

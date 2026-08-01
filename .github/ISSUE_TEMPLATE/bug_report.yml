@@ -1,0 +1,41 @@
+name: Bug report
+description: Something is wrong or a measurement looks incorrect
+labels: [bug]
+body:
+  - type: input
+    id: mac
+    attributes:
+      label: Mac model and chip
+      placeholder: "MacBook Air (M5, 16 GB)"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: macOS version
+      placeholder: "26.1 (25Bxxx)"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: >
+        What did you expect, and what did you see instead? For measurement
+        discrepancies, please include the reference you compared against
+        (Activity Monitor, System Information, ioreg output…).
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the Battery tab
+        2. …
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Cleanup safety
+      options:
+        - label: This bug involves the Cleanup tab offering a file/folder it should not touch (if checked, please consider a private security report instead — see SECURITY.md)

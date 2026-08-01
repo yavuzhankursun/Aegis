@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-selftest:
+    # arm64 (Apple Silicon) runner — the app targets macOS 26 / Apple Silicon.
+    runs-on: macos-26
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Swift version
+        run: swift --version
+
+      - name: Build (release)
+        run: swift build -c release
+
+      - name: SafetyGuard self-test
+        # The deletion gate's 36 pinned decisions. Non-zero exit fails CI —
+        # this is the contract every PR must keep (see CONTRIBUTING.md).
+        run: |
+          BIN="$(swift build -c release --show-bin-path)/Aegis"
+          AEGIS_SELFTEST=1 "$BIN"
+
+      - name: Bundle .app
+        run: ./build_app.sh release
+
+      - name: Verify code signature
+        run: codesign --verify --verbose=1 build/Aegis.app

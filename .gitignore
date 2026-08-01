@@ -1,0 +1,11 @@
+# Derleme çıktıları — build_app.sh her şeyi sıfırdan üretir
+.build/
+build/
+
+# macOS
+.DS_Store
+
+# Xcode / SwiftPM
+.swiftpm/
+*.xcuserdatad
+DerivedData/
