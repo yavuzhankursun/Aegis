@@ -22,7 +22,7 @@ struct BatteryService: Sendable {
         snap.rawMaxCapacity = intValue(props["AppleRawMaxCapacity"]) ?? 0
         snap.isCharging = (props["IsCharging"] as? Bool) ?? false
         snap.isPluggedIn = (props["ExternalConnected"] as? Bool) ?? false
-        snap.serial = (props["Serial"] as? String) ?? "—"
+        snap.serial = Snapshot.privacyMasked ? Snapshot.maskText : (props["Serial"] as? String) ?? "—"
         snap.permanentFailure = (intValue(props["PermanentFailureStatus"]) ?? 0) != 0
 
         if let t = intValue(props["Temperature"]) { snap.temperatureC = Double(t) / 100.0 }

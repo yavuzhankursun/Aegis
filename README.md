@@ -19,6 +19,20 @@ service, no network access, no elevated privileges.
 > "as is", without warranty of any kind (see [LICENSE](LICENSE)). Review the
 > cleanup list before confirming.
 
+![Overview — Aegis Score with component breakdown](docs/screenshots/overview.png)
+
+<details>
+<summary><b>More screenshots</b> — Battery (gauge lifetime log, cell balance), Performance, Hardware</summary>
+<br>
+
+![Battery — health, honest wear forecast, gauge lifetime log, cell balance](docs/screenshots/battery.png)
+
+![Performance — memory breakdown, CPU load, RAM-hungry apps](docs/screenshots/performance.png)
+
+![Hardware — chip, cores, displays, SIP](docs/screenshots/hardware.png)
+
+</details>
+
 ---
 
 ## Install
@@ -274,6 +288,9 @@ swift build -c release                  # compile only
 
 # Renders every tab to PNG (for UI verification)
 AEGIS_SNAPSHOT=/tmp/aegis-shots ./build/Aegis.app/Contents/MacOS/Aegis
+
+# Same, with serial numbers masked at the source (for shareable screenshots)
+AEGIS_PRIVATE=1 AEGIS_SNAPSHOT=/tmp/aegis-shots ./build/Aegis.app/Contents/MacOS/Aegis
 
 # Disable transparency (the system's "Reduce transparency" is also honored)
 AEGIS_PLAIN=1 ./build/Aegis.app/Contents/MacOS/Aegis

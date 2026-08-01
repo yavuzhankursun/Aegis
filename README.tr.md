@@ -14,6 +14,20 @@ ağ erişimi yok, yükseltilmiş yetki yok.
 > hiçbir garanti olmadan sunulur (bkz. [LICENSE](LICENSE)). Temizlik
 > sonuçlarını onaylamadan önce listeyi gözden geçir.
 
+![Genel Bakış — bileşen kırılımlı Aegis Skoru](docs/screenshots/overview.png)
+
+<details>
+<summary><b>Daha fazla ekran görüntüsü</b> — Pil (gauge ömür kaydı, hücre dengesi), Performans, Donanım</summary>
+<br>
+
+![Pil — sağlık, dürüst aşınma tahmini, gauge ömür kaydı, hücre dengesi](docs/screenshots/battery.png)
+
+![Performans — bellek dağılımı, işlemci yükü, RAM tüketenler](docs/screenshots/performance.png)
+
+![Donanım — yonga, çekirdekler, ekranlar, SIP](docs/screenshots/hardware.png)
+
+</details>
+
 ---
 
 ## Kurulum
@@ -260,6 +274,9 @@ swift build -c release                  # yalnızca derle
 
 # Her sekmeyi PNG'ye basar (arayüz doğrulaması için)
 AEGIS_SNAPSHOT=/tmp/aegis-shots ./build/Aegis.app/Contents/MacOS/Aegis
+
+# Aynısı, seri numaraları kaynağında maskeli (paylaşılabilir görüntüler için)
+AEGIS_PRIVATE=1 AEGIS_SNAPSHOT=/tmp/aegis-shots ./build/Aegis.app/Contents/MacOS/Aegis
 
 # Şeffaflığı kapat (sistemin "Şeffaflığı azalt" ayarı da otomatik dinlenir)
 AEGIS_PLAIN=1 ./build/Aegis.app/Contents/MacOS/Aegis

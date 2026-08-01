@@ -43,7 +43,9 @@ struct HardwareService: Sendable {
         if let hw = Shell.systemProfilerJSON("SPHardwareDataType")?["SPHardwareDataType"] as? [[String: Any]],
            let first = hw.first {
             info.marketingName = (first["machine_name"] as? String) ?? info.modelIdentifier
-            info.serialNumber = (first["serial_number"] as? String) ?? "—"
+            info.serialNumber = Snapshot.privacyMasked
+                ? Snapshot.maskText
+                : (first["serial_number"] as? String) ?? "—"
             info.memoryType = (first["physical_memory"] as? String) ?? Format.bytes(info.memoryBytes)
             if let chip = first["chip_type"] as? String { info.chipName = chip }
         } else {
