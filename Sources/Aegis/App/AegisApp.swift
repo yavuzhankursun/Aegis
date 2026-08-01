@@ -9,6 +9,14 @@ struct AegisApp: App {
     /// Karşılama ekranı bir kez gösterilir; Yardım menüsünden geri çağrılabilir.
     @AppStorage("welcomeCompleted") private var welcomeCompleted = false
 
+    init() {
+        // Öz denetim AppKit başlamadan koşar ve çıkar: WindowServer gerekmez.
+        // Böylece Homebrew'un test sandbox'ı ve headless CI'da da anında biter.
+        if SafetyGuardSelfTest.isRequested {
+            exit(SafetyGuardSelfTest.run() == 0 ? 0 : 1)
+        }
+    }
+
     /// Snapshot modunda karşılama açılmaz — sekme görüntülerinin önünü kapatır.
     private var showWelcome: Binding<Bool> {
         Binding(
@@ -56,10 +64,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     static let occlusionChanged = Notification.Name("aegis.occlusion.changed")
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if SafetyGuardSelfTest.isRequested {
-            let failures = SafetyGuardSelfTest.run()
-            exit(failures == 0 ? 0 : 1)
-        }
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
     }
