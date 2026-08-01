@@ -46,6 +46,13 @@ cd Aegis
 open build/Aegis.app
 ```
 
+Ya da Homebrew ile (o da kaynaktan derler, sonra `/Applications`'a tek satırlık
+kopyalama komutunu gösterir):
+
+```bash
+brew install yavuzhankursun/tap/aegis
+```
+
 Uygulamayı `/Applications` altına taşımak istersen:
 
 ```bash

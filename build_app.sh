@@ -8,8 +8,13 @@ APP="$ROOT/build/Aegis.app"
 CONFIG="${1:-release}"
 
 echo "==> Derleniyor ($CONFIG)"
-swift build -c "$CONFIG"
-BIN="$(swift build -c "$CONFIG" --show-bin-path)/Aegis"
+# AEGIS_SWIFT_FLAGS: swift build'e ek bayraklar. Homebrew gibi zaten sandbox
+# içinde koşan ortamlar SwiftPM'in kendi sandbox'ını açamaz (sandbox_apply
+# reddedilir); formül buraya --disable-sandbox geçirir. Kelime bölünmesi kasıtlı.
+# shellcheck disable=SC2086
+swift build -c "$CONFIG" ${AEGIS_SWIFT_FLAGS:-}
+# shellcheck disable=SC2086
+BIN="$(swift build -c "$CONFIG" ${AEGIS_SWIFT_FLAGS:-} --show-bin-path)/Aegis"
 [ -x "$BIN" ] || { echo "Yürütülebilir bulunamadı: $BIN"; exit 1; }
 
 echo "==> Paket oluşturuluyor"

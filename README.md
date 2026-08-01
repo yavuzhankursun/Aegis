@@ -51,6 +51,13 @@ cd Aegis
 open build/Aegis.app
 ```
 
+Or via Homebrew (also builds from source, then prints the one-line copy into
+`/Applications`):
+
+```bash
+brew install yavuzhankursun/tap/aegis
+```
+
 To install into `/Applications`:
 
 ```bash

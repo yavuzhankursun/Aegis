@@ -4,6 +4,18 @@ All notable changes to Aegis are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-08-01
+
+### Added
+- `AEGIS_PRIVATE=1` — masks serial numbers at the source for shareable
+  screenshots; README now ships masked screenshots
+- Homebrew tap: `brew install yavuzhankursun/tap/aegis` (builds from source;
+  `AEGIS_SWIFT_FLAGS` hook in `build_app.sh` for sandboxed environments)
+- Social preview image generator (`Tools/makesocial.swift`)
+
+### Changed
+- Snapshot tool renders each tab at its full content height
+
 ## [1.0.0] - 2026-08-01
 
 First public release.
