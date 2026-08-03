@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+# Least privilege for GITHUB_TOKEN: this workflow only checks out and builds.
+# Declared at workflow level so any job added later also defaults to read-only.
+permissions:
+  contents: read
+
 jobs:
   build-and-selftest:
     # arm64 (Apple Silicon) runner — the app targets macOS 26 / Apple Silicon.
